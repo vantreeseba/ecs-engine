@@ -1,0 +1,5 @@
+module.exports = {
+  PLAYER_CONNECT:1,
+  PLAYER_DISCONNECT:2,
+  PLAYER_INPUT_SYNC:3,
+};
