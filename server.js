@@ -6,8 +6,6 @@ const app = express();
 const MessageTypes = require('./shared/MessageTypes.js');
 const ServerEvents = require('./server/ServerEvents.js');
 
-// var entity = require('./shared/Entity');
-
 const server = http.createServer(app).listen(8000, '0.0.0.0');
 const primus = new Primus(server);
 

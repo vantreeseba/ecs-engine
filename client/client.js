@@ -3,6 +3,10 @@ const ClientEvents = require('./ClientEvents');
 const Keys = require('./Keys');
 const Gamepad = require('./GamepadManager');
 
+const Entity = require('../shared/Entity.js');
+const Components = require('./components');
+const Systems = require('./systems');
+
 /**
  * Client
  */
@@ -17,6 +21,14 @@ class Client {
     this.primus.emit(MessageTypes.PLAYER_CONNECT, 'yo');
 
     this.init();
+
+    this.entities = [new Entity()];
+    this.entities[0].addComponent(new Components.position());
+    this.entities[0].addComponent(new Components.physics());
+
+
+    // console.log(this.entities);
+    this.systems = Object.keys(Systems).map(system => new Systems[system]());
   }
 
   /**
@@ -33,6 +45,10 @@ class Client {
       const fn = ClientEvents[type] || noop(type);
       this.primus.on(MessageTypes[type], fn.bind(this.primus));
     });
+
+    this.keys.on('press', 'a', () => {
+      console.log(this.entities);
+    });
   }
 
   /**
@@ -48,6 +64,8 @@ class Client {
         gamepad: this.gamepad.delta
       });
     }
+
+    this.systems.forEach(s => s.update(this.entities));
 
     window.requestAnimationFrame(this.update.bind(this));
   }
