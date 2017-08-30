@@ -1,3 +1,3 @@
-module.exports = {
-  physics: require('./Physics')
-};
+module.exports = [
+  require('./Physics')
+];

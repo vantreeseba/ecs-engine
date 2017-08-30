@@ -1,4 +1,5 @@
 const System = require('./System');
+const Vector = require('../Vector');
 
 /**
  * Phsyics system in ECS.
@@ -19,21 +20,17 @@ class Physics extends System {
    * @param {Array} entities
    */
   update(entities) {
-    let i = 0;
-    let entity;
-    let pys;
-    let pos;
+    let i = 0, entity, pys, pos;
+
     for(; i < entities.length; i += 1) {
       entity = entities[i];
       pys = entity.components.physics;
       pos = entity.components.position;
 
-      pys.vel.add(pys.acc);
-      pys.vel.limit(pys.maxSpeed);
-      pos.x += pys.vel.x;
-      pos.y += pys.vel.y;
-      // pos.add(pys.vel);
-      pys.acc.scale(0);
+      Vector.add2(pys.vel, pys.acc);
+      Vector.limit2(pys.vel, pys.maxSpeed);
+      Vector.add2(pos, pys.vel);
+      Vector.scale2(pys.acc, 0);
     }
   }
 }

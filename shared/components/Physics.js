@@ -13,11 +13,11 @@ class Physics extends Component {
     super(params);
 
     if(!params || !params.vel) {
-      this.vel = new Vector();
+      this.vel = {x:0, y:0};
     }
 
     if(!params || !params.acc) {
-      this.acc = new Vector();
+      this.acc = {x:0, y:0};
     }
 
     if(!params || !params.maxSpeed) {

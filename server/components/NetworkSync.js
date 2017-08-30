@@ -9,6 +9,8 @@ class NetworkSync extends Component {
    */
   constructor() {
     super();
+
+    this.new = true;
   }
 }
 

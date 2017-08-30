@@ -69,6 +69,37 @@ class Vector {
 
     return this;
   }
+
+  static add2(v1, v2) {
+    v1.x += v2.x;
+    v1.y += v2.y;
+    return v1;
+  }
+
+  static sub2(v1, v2) {
+    v1.x -= v2.x;
+    v1.y -= v2.y;
+    return v1;
+  }
+
+  static scale2(v1, scalar) {
+    v1.x *= scalar;
+    v1.y *= scalar;
+    return v1;
+  }
+
+  static mag2(v1, mag) {
+    if(mag){
+      Vector.scale2(1/Vector.mag2(v1));
+    }
+    return Math.hypot(v1.x, v1.y);
+  }
+
+  static limit2(v1, mag) {
+    if(Vector.mag2(v1) > mag) {
+      Vector.mag2(v1, mag);
+    }
+  }
 }
 
 module.exports = Vector;
