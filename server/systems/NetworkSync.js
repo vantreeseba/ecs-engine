@@ -12,7 +12,7 @@ class NetworkSync extends System {
    */
   constructor({primus}) {
     // TODO: Allow setting tick rate.
-    super(['networkSync, position']);
+    super(['networksync, position']);
 
     primus.on('connection', function connection(spark) {
       Object.keys(MessageTypes).forEach((type) => {
@@ -35,6 +35,7 @@ class NetworkSync extends System {
 
     for(; i < entities.length; i += 1) {
       entity = entities[i];
+      console.log(entity);
       ns = entity.components.networkSync;
 
       if(ns.new) {

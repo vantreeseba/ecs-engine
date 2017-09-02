@@ -270,6 +270,32 @@ class GamePadManager {
     return false;
   }
 
+  isMoved(target, player = -1) {
+    let buttonId = -1;
+
+    if(this.mappings[target]) {
+      buttonId = this.mappings[target].value;
+    }
+
+    if(buttonId === -1) {
+      return 0;
+    }
+
+    if(player !== -1) {
+      return this.states[i].axes.length && this.states[player].axes[buttonId] > 0;
+    }
+
+    for(let i = 0; i < 4; i += 1) {
+      if(this.states[i] && this.states[i].axes.length &&
+        (this.states[i].axes[buttonId] > this.axisThreshold ||
+        this.states[i].axes[buttonId] < -this.axisThreshold)) {
+        return this.states[i].axes[buttonId];
+      }
+    }
+
+    return 0;
+  }
+
   /**
    * Returns if the state of the buttons has changed since the last update.
    *

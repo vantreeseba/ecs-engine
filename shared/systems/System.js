@@ -34,7 +34,8 @@ class System {
    */
   run(entities){
     if(this.cacheDirty) {
-      this.entityCache = entities.filter(this.entityShouldBeUpdated);
+      this.entityCache = entities.filter(e => this.entityShouldBeUpdated(e));
+      this.cacheDirty = false;
     }
     this.update(this.entityCache);
   }

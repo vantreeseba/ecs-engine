@@ -1,4 +1,4 @@
-const Component = require('./Component');
+const Component = require('../../shared/components/Component');
 
 /**
  * A component representing the health of an entity.
