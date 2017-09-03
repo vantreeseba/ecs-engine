@@ -1,16 +1,13 @@
-const Component = require('./Component');
+const Component = require('../../shared/components/Component');
 
 /**
- * A component representing if entity is player controlled. 
  * @extends {Component}
  */
-class PlayerControl extends Component {
+module.exports = class PlayerControl extends Component {
   /**
    * constructor
    */
   constructor() {
-    super(true);
+    super();
   }
-}
-
-module.exports = PlayerControl;
+};

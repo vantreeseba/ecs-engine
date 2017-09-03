@@ -148,11 +148,13 @@ class GamePadManager {
    */
   update() {
     let player = 0;
-    let button = 0;
-    let axis = 0;
+    let controllers = navigator.getGamepads();
 
     for(; player < 4; player += 1) {
-      var controller = navigator.getGamepads()[player];
+      let button = 0;
+      let axis = 0;
+      let controller = controllers[player];
+
       if(!controller || !controller.connected || !this.states[player]) {
         continue;
       }
@@ -179,8 +181,8 @@ class GamePadManager {
       }
 
       for (; axis < controller.axes.length; axis++) {
-        var curVal = controller.axes[axis];
-        var prevVal = this.states[player].axes[axis];
+        let curVal = controller.axes[axis];
+        let prevVal = this.states[player].axes[axis];
 
         if((prevVal >= -this.axisThreshold && prevVal <= this.axisThreshold) &&
            (curVal <= -this.axisThreshold || curVal >= this.axisThreshold)) {

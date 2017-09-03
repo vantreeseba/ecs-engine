@@ -3,7 +3,7 @@ const Component = require('../../shared/components/Component');
 /**
  * A component representing the health of an entity.
  */
-class NetworkSync extends Component {
+module.exports = class NetworkSync extends Component {
   /**
    * constructor
    */
@@ -11,5 +11,3 @@ class NetworkSync extends Component {
     super({netId: id});
   }
 }
-
-module.exports = NetworkSync;

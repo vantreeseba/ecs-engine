@@ -2,7 +2,7 @@ const MessageTypes = require('../shared/MessageTypes.js');
 const ClientEvents = require('./ClientEvents');
 
 const Entity = require('../shared/Entity.js');
-const Components = require('./components');
+const Components = require('../shared/components');
 const Systems = require('./systems');
 
 const Engine = require('../shared/Engine.js');
@@ -18,7 +18,7 @@ class Client extends Engine {
     super();
 
     this.primus = new Primus();
-    this.primus.emit(MessageTypes.PLAYER_CONNECT, 'yo');
+    this.primus.emit(MessageTypes.PLAYER_CONNECT);
 
     this.init();
     this.systems = Object.keys(Systems).map(system => new Systems[system]({engine: this, primus: this.primus}));

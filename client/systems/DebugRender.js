@@ -9,7 +9,7 @@ class DebugRender extends System {
    */
   constructor() {
     // TODO: Add appearance component.
-    super(['position']);
+    super(['position', 'appearance']);
 
     this.canvas = document.createElement('canvas');
     this.canvas.id = 'debugRender';
@@ -27,15 +27,16 @@ class DebugRender extends System {
    * @param {Array} entities
    */
   update(entities) {
-    let i = 0, entity, pos;
+    let i = 0, entity, pos, app;
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.ctx.fillStyle = 'red';
     for(; i < entities.length; i += 1) {
       entity = entities[i];
       pos = entity.position;
+      app = entity.appearance;
 
+      this.ctx.fillStyle = `rgb(${app.r}, ${app.g}, ${app.b})`;
       this.ctx.fillRect(pos.x, pos.y, 10, 10);
     }
   }
