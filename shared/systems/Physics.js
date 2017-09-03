@@ -11,7 +11,7 @@ class Physics extends System {
    */
   constructor() {
     // TODO: Allow setting tick rate.
-    super(['position, physics']);
+    super(['position', 'physics']);
   }
 
   /**

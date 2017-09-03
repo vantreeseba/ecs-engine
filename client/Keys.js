@@ -47,6 +47,7 @@ class Keys {
         if(listener) {
           listener();
         }
+        continue;
       }
 
       if(wasPressed && isPressed) {
@@ -55,15 +56,17 @@ class Keys {
         if(listener) {
           listener();
         }
+        continue;
       }
 
       if(wasPressed && !isPressed) {
-        delete this.lastState[key];
+        this.lastState[key] = false;
         this.delta[key] = false;
         listener = this.listeners.release[key];
         if(listener) {
           listener();
         }
+        continue;
       }
 
       if(!wasPressed && !isPressed) {

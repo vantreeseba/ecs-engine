@@ -17,58 +17,58 @@ class Vector {
    * @param {Vector} vec Vector to add to this vector.
    * @return {Vector} This vector.
    */
-  add(vec) {
-    this.x += vec.x;
-    this.y += vec.y;
-    return this;
-  }
+  // add(vec) {
+  //   this.x += vec.x;
+  //   this.y += vec.y;
+  //   return this;
+  // }
 
   /**
    * Subtract a vector from this vector.
    * @param {Vector} vec Vector to subtract from this one.
    * @return {Vector} This vector.
    */
-  sub(vec) {
-    this.x -= vec.x;
-    this.y -= vec.y;
-    return this;
-  }
+  // sub(vec) {
+  //   this.x -= vec.x;
+  //   this.y -= vec.y;
+  //   return this;
+  // }
 
   /**
    * Scale this vector by a scalar.
    * @param {Number} scalar Scaler to scale vector by.
    * @return {Vector} This vector.
    */
-  scale(scalar) {
-    this.x *= scalar;
-    this.y *= scalar;
-    return this;
-  }
+  // scale(scalar) {
+  //   this.x *= scalar;
+  //   this.y *= scalar;
+  //   return this;
+  // }
 
   /**
    * Set or get magnitude of vector.
    * @param {Number} mag Magnitude to set.
    * @return {Number} The magnitude of this vector.
    */
-  mag(mag) {
-    if(mag){
-      this.scale(1/this.mag());
-    }
-    return Math.hypot(this.x, this.y);
-  }
+  // mag(mag) {
+  //   if(mag){
+  //     this.scale(1/this.mag());
+  //   }
+  //   return Math.hypot(this.x, this.y);
+  // }
 
   /**
    * Set mag to input if mag is greater than input;
    * @param {Number} mag Magnitude to limit to.
    * @return {Vector} This vector.
    */
-  limit(mag) {
-    if(this.mag() > mag){
-      this.mag(mag);
-    }
+  // limit(mag) {
+  //   if(this.mag() > mag){
+  //     this.mag(mag);
+  //   }
 
-    return this;
-  }
+  //   return this;
+  // }
 
   static add2(v1, v2) {
     v1.x += v2.x;
@@ -90,7 +90,7 @@ class Vector {
 
   static mag2(v1, mag) {
     if(mag){
-      Vector.scale2(1/Vector.mag2(v1));
+      Vector.scale2(v1, 1/Vector.mag2(v1));
     }
     return Math.hypot(v1.x, v1.y);
   }

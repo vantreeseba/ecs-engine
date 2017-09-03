@@ -14,6 +14,8 @@ const Systems = require('./systems');
 const engine = new Engine();
 engine.systems = Systems.map(s => new s({engine, primus}));
 
+console.log(engine.systems);
+
 setInterval(() => {
   engine.update();
 }, 16);

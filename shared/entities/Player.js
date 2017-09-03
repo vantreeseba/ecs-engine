@@ -9,5 +9,6 @@ module.exports = class Player extends Entity {
     this.addComponent(new Components.playerControl());
     this.addComponent(new Components.networkSync(netId));
     this.addComponent(new Components.appearance());
+    this.addComponent(new Components.physics());
   }
 }

@@ -21,6 +21,8 @@ class PlayerControl extends System {
     this.gamepad.update();
 
     this.primus = primus;
+
+    this.commandNumber = 0;
   }
 
   /**
@@ -37,10 +39,10 @@ class PlayerControl extends System {
     }
     if(this.gamepad.hasDelta()) {
       delta.gamepad = this.gamepad.delta;
-      // console.log(this.gamepad.delta);
     }
 
     if(delta.keys || delta.gamepad) {
+      delta.commandNumber = this.commandNumber++;
       this.primus.emit(MessageTypes.PLAYER_INPUT_SYNC, delta);
     }
   }
