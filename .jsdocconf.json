@@ -1,0 +1,12 @@
+{
+  "opts": {
+    "recurse": true
+  },
+  "source": {
+    "include": [
+      "server",
+      "shared",
+      "client"
+    ]
+  }
+}

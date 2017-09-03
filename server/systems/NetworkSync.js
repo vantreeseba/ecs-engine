@@ -10,17 +10,17 @@ class NetworkSync extends System {
   /**
    * constructor
    */
-  constructor({primus}) {
+  constructor({engine, primus}) {
     // TODO: Allow setting tick rate.
-    super(['networksync, position']);
+    super(['networksync']);
+
+    this.primus = primus;
 
     primus.on('connection', function connection(spark) {
       Object.keys(MessageTypes).forEach((type) => {
         const fn = ServerEvents[type] || function(){};
-        spark.on(MessageTypes[type], fn.bind(spark));
+        spark.on(MessageTypes[type], fn.bind({engine, spark}));
       });
-
-      spark.emit(MessageTypes.PLAYER_CONNECT, 'yoyoyo');
     });
   }
 
@@ -31,16 +31,12 @@ class NetworkSync extends System {
   update(entities) {
     let i = 0;
     let entity;
-    let ns;
 
     for(; i < entities.length; i += 1) {
       entity = entities[i];
-      console.log(entity);
-      ns = entity.components.networkSync;
-
-      if(ns.new) {
-        // TODO: Send entity creation message.
-      }
+      this.primus.forEach((spark) => {
+        spark.emit(MessageTypes.ENTITY_SYNC, entity);
+      });
     }
   }
 }

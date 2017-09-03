@@ -31,20 +31,22 @@ class PlayerControl extends System {
     let xAxis = this.gamepad.isMoved('ps4_left_stick_x');
     let yAxis = this.gamepad.isMoved('ps4_left_stick_y');
 
-    entities[0].components.position.x += xAxis;
-    entities[0].components.position.y += yAxis;
+    for(let i = 0; i < entities.length; i++) {
+      entities[i].position.x += xAxis;
+      entities[i].position.y += yAxis;
 
-    if(this.keys.isDown('a')) {
-      entities[0].components.position.x -=1;
-    }
-    if(this.keys.isDown('d')) {
-      entities[0].components.position.x +=1;
-    }
-    if(this.keys.isDown('w')) {
-      entities[0].components.position.y -=1;
-    }
-    if(this.keys.isDown('s')) {
-      entities[0].components.position.y +=1;
+      if(this.keys.isDown('a')) {
+        entities[i].position.x -=1;
+      }
+      if(this.keys.isDown('d')) {
+        entities[i].position.x +=1;
+      }
+      if(this.keys.isDown('w')) {
+        entities[i].position.y -=1;
+      }
+      if(this.keys.isDown('s')) {
+        entities[i].position.y +=1;
+      }
     }
   }
 

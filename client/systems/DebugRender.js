@@ -34,7 +34,7 @@ class DebugRender extends System {
     this.ctx.fillStyle = 'red';
     for(; i < entities.length; i += 1) {
       entity = entities[i];
-      pos = entity.components.position;
+      pos = entity.position;
 
       this.ctx.fillRect(pos.x, pos.y, 10, 10);
     }

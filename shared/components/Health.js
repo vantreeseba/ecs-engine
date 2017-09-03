@@ -2,6 +2,7 @@ const Component = require('./Component');
 
 /**
  * A component representing the health of an entity.
+ * @extends {Component}
  */
 class Health extends Component {
   /**

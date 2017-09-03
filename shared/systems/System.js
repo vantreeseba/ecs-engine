@@ -1,5 +1,6 @@
 /**
  * A System in the ECS.
+ * @type {System}
  */
 class System {
   /**
@@ -7,6 +8,7 @@ class System {
    * @param {Array} type The component type this system acts on.
    */
   constructor(types) {
+    this.name = this.constructor.name.toLowerCase();
     this.types = types;
     this.entityCache = [];
     this.cacheDirty = true;
@@ -14,13 +16,13 @@ class System {
 
   /**
    * Check if an entity should be updated by this system.
-   *
+   * @private
    * @param {Object} entity The entity to check.
    * @return {Boolean} True if the entity has all the components to be updated by this system.
    */
-  entityShouldBeUpdated(entity) {
+  _entityShouldBeUpdated(entity) {
     for(let i = 0; i < this.types.length; i += 1) {
-      if(!entity.components[this.types[i]]) {
+      if(!entity[this.types[i]]) {
         return false;
       }
     }
@@ -30,18 +32,21 @@ class System {
 
   /**
    * Run the system on the entities matching the type of this system.
+   * @private
    * @param {Array} entities Entites to run the system on.
    */
   run(entities){
     if(this.cacheDirty) {
-      this.entityCache = entities.filter(e => this.entityShouldBeUpdated(e));
+      this.entityCache = entities.filter(e => this._entityShouldBeUpdated(e));
       this.cacheDirty = false;
     }
+
     this.update(this.entityCache);
   }
 
   /**
    * Runs the system of the entities, this should be implemented in child classes.
+   * @abstract
    * @param {Array} entities Entities to be run through the system.
    */
   update() {

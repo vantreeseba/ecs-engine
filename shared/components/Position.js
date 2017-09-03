@@ -3,6 +3,7 @@ const Vector = require('../Vector');
 
 /**
  * A component representing a position.
+ * @extends {Component}
  */
 class Position extends Component {
   /**

@@ -3,7 +3,6 @@ const Vector = require('../Vector');
 
 /**
  * Phsyics system in ECS.
- *
  * @extends {System}
  */
 class Physics extends System {
@@ -24,8 +23,8 @@ class Physics extends System {
 
     for(; i < entities.length; i += 1) {
       entity = entities[i];
-      pys = entity.components.physics;
-      pos = entity.components.position;
+      pys = entity.physics;
+      pos = entity.position;
 
       Vector.add2(pys.vel, pys.acc);
       Vector.limit2(pys.vel, pys.maxSpeed);

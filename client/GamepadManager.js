@@ -262,7 +262,9 @@ class GamePadManager {
     }
 
     for(let i = 0; i < 4; i += 1) {
-      if(this.states[i] && this.states[i].buttons.length && this.states[i].buttons[buttonId] !== 0) {
+      if(this.states[i] &&
+        this.states[i].buttons.length &&
+        this.states[i].buttons[buttonId] !== 0) {
         return true;
       }
     }
@@ -270,6 +272,11 @@ class GamePadManager {
     return false;
   }
 
+  /**
+   * Returns a number representing if an axis has moved, 0 if not, (-1,0] or [0,1) otherwise. 
+   * @param {String} target
+   * @param {Number} [player=-1]
+   */
   isMoved(target, player = -1) {
     let buttonId = -1;
 

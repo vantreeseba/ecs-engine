@@ -21,11 +21,6 @@ class Client extends Engine {
     this.primus.emit(MessageTypes.PLAYER_CONNECT, 'yo');
 
     this.init();
-
-    this.entities.push(new Entity());
-    this.entities[0].addComponent(new Components.position());
-    this.entities[0].addComponent(new Components.playerControl());
-
     this.systems = Object.keys(Systems).map(system => new Systems[system]());
   }
 
@@ -33,16 +28,16 @@ class Client extends Engine {
    * Setup networking.
    */
   init() {
-    // const noop = (type) => {
-    //   return () => {
-    //     console.log(`Received message of type: ${type}. There is no handler registered for this message type.`);
-    //   };
-    // };
+    const noop = (type) => {
+      return () => {
+        console.log(`No handler for: ${type}.`);
+      };
+    };
 
-    // Object.keys(MessageTypes).forEach(type => {
-    //   const fn = ClientEvents[type] || noop(type);
-    //   this.primus.on(MessageTypes[type], fn.bind(this.primus));
-    // });
+    Object.keys(MessageTypes).forEach(type => {
+      const fn = ClientEvents[type] || noop(type);
+      this.primus.on(MessageTypes[type], fn.bind({engine: this, primus: this.primus}));
+    });
   }
 
   /**
@@ -50,8 +45,6 @@ class Client extends Engine {
    */
   update() {
     super.update();
-
-
     window.requestAnimationFrame(this.update.bind(this));
   }
 }

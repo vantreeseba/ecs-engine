@@ -9,26 +9,12 @@ primus.plugin('emit', require('primus-emit'));
 app.use(express.static(__dirname + '/../dist'));
 
 const Engine = require('../shared/Engine');
-const Entity = require('../shared/Entity.js');
 const Systems = require('./systems');
-const Components = require('./components');
 
 const engine = new Engine();
-engine.systems = Systems.map(s => new s({primus}));
-
-const testEntity = new Entity();
-engine.entities.push(new Entity());
-engine.entities[0].addComponent(new Components.position());
-engine.entities[0].addComponent(new Components.physics());
-engine.entities[0].components.physics.vel.x = 0.1;
+engine.systems = Systems.map(s => new s({engine, primus}));
 
 setInterval(() => {
   engine.update();
-
-  // console.log(engine.entities[0].components.position);
 }, 50);
-
-
-
-
 
