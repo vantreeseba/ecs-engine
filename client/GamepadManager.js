@@ -28,6 +28,7 @@ class GamePadManager {
 
   /**
    * Setup string to button mappings to make use easier.
+   * @private
    */
   _setupButtonMappings() {
     this.mappings = {
@@ -90,6 +91,7 @@ class GamePadManager {
 
   /**
    * Internal method for handling button events.
+   * @private
    * @param {String} event Type of event.
    * @param {Number} player The gamepad that triggered the event.
    * @param {Number} button The index of the button that triggered the event.
@@ -110,7 +112,7 @@ class GamePadManager {
 
   /**
    * Internal method for handling axis events.
-   *
+   * @private
    * @param {String} event Type of event.
    * @param {Number} player The gamepad that triggered the event.
    * @param {Number} axis The index of the axis that triggered the event.
@@ -131,6 +133,7 @@ class GamePadManager {
 
   /**
    * Set the internal state of the gamepad.
+   * @private
    * @param {Object} gamepad The gamepad.
    */
   _setState(gamepad) {
