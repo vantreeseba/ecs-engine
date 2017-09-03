@@ -3,7 +3,7 @@ const MessageTypes = require('../../shared/MessageTypes.js');
 const ServerEvents = require('../ServerEvents.js');
 
 /**
- * Phsyics system in ECS.
+ * Physics system in ECS.
  * @extends {System}
  */
 class NetworkSync extends System {

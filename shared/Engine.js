@@ -19,7 +19,6 @@ class Engine {
    * Run the systems registered in the engines on the entities.
    */
   update() {
-    // console.log('engine update');
     this.systems.forEach(s => s.run(this.entities));
   }
 }

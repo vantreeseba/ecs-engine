@@ -7,10 +7,8 @@ class NetworkSync extends Component {
   /**
    * constructor
    */
-  constructor() {
-    super();
-
-    this.new = true;
+  constructor(id) {
+    super({netId: id});
   }
 }
 

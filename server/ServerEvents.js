@@ -8,7 +8,7 @@ const ServerEvents = {
 
     let entity = new Entity();
     entity.addComponent(new Components.position());
-    entity.addComponent(new Components.networkSync());
+    entity.addComponent(new Components.networkSync(this.spark.id));
 
     this.engine.addEntity(entity);
   },
@@ -16,7 +16,10 @@ const ServerEvents = {
   PLAYER_DISCONNECT() {
   },
 
-  PLAYER_INPUT_SYNC() {
+  PLAYER_INPUT_SYNC(data) {
+    this.engine.systems
+      .find(x => x.name === 'playercontrol')
+      .setInput(this.spark.id, data.delta);
   }
 };
 

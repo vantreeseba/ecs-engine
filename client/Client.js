@@ -21,7 +21,7 @@ class Client extends Engine {
     this.primus.emit(MessageTypes.PLAYER_CONNECT, 'yo');
 
     this.init();
-    this.systems = Object.keys(Systems).map(system => new Systems[system]());
+    this.systems = Object.keys(Systems).map(system => new Systems[system]({engine: this, primus: this.primus}));
   }
 
   /**
