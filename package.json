@@ -3,17 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "client.js",
-  "dependencies": {
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0",
     "chai": "^4.1.0",
     "express": "^4.15.4",
+    "http-proxy-middleware": "^0.17.4",
     "mocha": "^3.4.2",
+    "npm-run-all": "^4.1.1",
     "npm-watch": "^0.2.0",
     "primus": "^7.1.0",
     "primus-emit": "^1.0.0",
+    "primus-msgpack": "^1.0.2",
     "sinon": "^2.3.8",
-    "uws": "^8.14.1"
+    "uws": "^8.14.1",
+    "webpack": "^3.5.5"
   },
-  "devDependencies": {},
   "watch": {
     "test": {
       "patterns": [
@@ -26,7 +31,9 @@
   "scripts": {
     "watch": "npm-watch test",
     "test": "mocha --recursive -u exports --reporter=min",
-    "start": "node server.js"
+    "dev" : "run-p dev:*",
+    "dev:server": "node server",
+    "dev:build": "webpack"
   },
   "author": "",
   "license": "ISC"
