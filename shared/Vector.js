@@ -90,7 +90,7 @@ class Vector {
 
   static mag2(v1, mag) {
     if(mag){
-      Vector.scale2(v1, 1/Vector.mag2(v1));
+      Vector.scale2(v1, mag/Vector.mag2(v1));
     }
     return Math.hypot(v1.x, v1.y);
   }

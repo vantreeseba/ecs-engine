@@ -11,8 +11,7 @@ class NetworkSync extends System {
    * constructor
    */
   constructor({engine, primus}) {
-    // TODO: Allow setting tick rate.
-    super(['networksync']);
+    super(['networksync'], 20);
 
     this.primus = primus;
 

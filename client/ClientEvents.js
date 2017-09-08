@@ -1,3 +1,6 @@
+const Utils = require('../shared/utils');
+const MessageTypes = require('../shared/MessageTypes');
+
 const ClientEvents = {
   PLAYER_CONNECT(data) {
   },
@@ -11,8 +14,16 @@ const ClientEvents = {
       this.engine.entities.push(data);
       this.engine.systems.forEach(s => s.cacheDirty = true);
     } else {
-      entity.position = data.position;
+      Object.assign(entity, data);
     }
+  },
+  PONG() {
+    let pingTime = (Date.now() - this.engine.pingTime - 100);
+    this.engine.pingTime = Date.now();
+    this.engine.ping = Utils.calculateRollingAverage(this.engine.ping, pingTime, 10);
+    setTimeout(() => {
+      this.primus.emit(MessageTypes.PING);
+    }, 100);
   }
 };
 

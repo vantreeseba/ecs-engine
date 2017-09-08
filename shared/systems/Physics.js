@@ -9,8 +9,8 @@ class Physics extends System {
   /**
    * constructor
    */
-  constructor() {
-    super(['position', 'physics'], 50);
+  constructor({tickRate} = {tickRate:20}) {
+    super(['position', 'physics'], tickRate);
   }
 
   /**
@@ -19,19 +19,16 @@ class Physics extends System {
    */
   update(entities) {
     let i = 0, entity, pys, pos;
-
     for(; i < entities.length; i += 1) {
       entity = entities[i];
       pys = entity.physics;
       pos = entity.position;
 
       Vector.add2(pys.vel, pys.acc);
-      Vector.limit2(pys.vel, pys.maxSpeed);
+      Vector.limit2(pys.vel, pys.maxSpeed * this.dt);
       Vector.add2(pos, pys.vel);
       Vector.scale2(pys.acc, 0);
-
-      // TODO: Make better friction.
-      Vector.scale2(pys.vel, 0.8);
+      // Vector.scale2(pys.vel, 0.99999);
     }
   }
 }

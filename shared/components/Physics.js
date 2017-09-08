@@ -22,7 +22,7 @@ class Physics extends Component {
     }
 
     if(!params || !params.maxSpeed) {
-      this.maxSpeed = 1;
+      this.maxSpeed = 0.1;
     }
   }
 }

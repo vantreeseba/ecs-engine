@@ -7,12 +7,15 @@ class System {
    * constructor
    * @param {Array} type The component type this system acts on.
    */
-  constructor(types, tickRate = 16) {
+  constructor(types, tickRate = 60) {
     this.name = this.constructor.name.toLowerCase();
     this.types = types;
     this.entityCache = [];
     this.cacheDirty = true;
-    this.tickRate = tickRate;
+
+    // Fixed timerate updates.
+    // https://gafferongames.com/post/fix_your_timestep/
+    this.dt = 1000 / tickRate;
     this.accum = 0;
   }
 
@@ -45,10 +48,9 @@ class System {
 
     this.accum += dt;
 
-    while(this.accum >= this.tickRate) {
-      console.log(this.name);
+    while(this.accum >= this.dt) {
       this.update(this.entityCache);
-      this.accum -= this.tickRate;
+      this.accum -= this.dt;
     }
   }
 

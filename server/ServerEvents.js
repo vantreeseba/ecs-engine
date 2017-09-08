@@ -13,10 +13,12 @@ const ServerEvents = {
   },
 
   PLAYER_INPUT_SYNC(data) {
-    console.log(data);
     this.engine.systems
       .find(x => x.name === 'playercontrol')
       .setInput(this.spark.id, data);
+  },
+  PING() {
+    this.spark.emit(MessageTypes.PONG);
   }
 };
 
