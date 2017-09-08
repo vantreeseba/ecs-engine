@@ -10,8 +10,7 @@ class Physics extends System {
    * constructor
    */
   constructor() {
-    // TODO: Allow setting tick rate.
-    super(['position', 'physics']);
+    super(['position', 'physics'], 50);
   }
 
   /**
@@ -30,6 +29,9 @@ class Physics extends System {
       Vector.limit2(pys.vel, pys.maxSpeed);
       Vector.add2(pos, pys.vel);
       Vector.scale2(pys.acc, 0);
+
+      // TODO: Make better friction.
+      Vector.scale2(pys.vel, 0.8);
     }
   }
 }

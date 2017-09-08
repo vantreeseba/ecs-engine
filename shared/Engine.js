@@ -8,6 +8,8 @@ class Engine {
   constructor(){
     this.systems = [];
     this.entities = [];
+    this.dt = 0;
+    this.prevTime = Date.now();
   }
 
   addEntity(entity) {
@@ -19,7 +21,11 @@ class Engine {
    * Run the systems registered in the engines on the entities.
    */
   update() {
-    this.systems.forEach(s => s.run(this.entities));
+
+    this.dt = Date.now() - this.prevTime;
+    this.prevTime = Date.now();
+
+    this.systems.forEach(s => s.run(this.entities, this.dt));
   }
 }
 

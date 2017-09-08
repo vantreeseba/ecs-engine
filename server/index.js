@@ -18,4 +18,4 @@ engine.systems = Systems.map(s => new s({engine, primus}));
 
 setInterval(() => {
   engine.update();
-}, 16);
+}, 50);

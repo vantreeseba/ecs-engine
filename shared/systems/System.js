@@ -7,11 +7,13 @@ class System {
    * constructor
    * @param {Array} type The component type this system acts on.
    */
-  constructor(types) {
+  constructor(types, tickRate = 16) {
     this.name = this.constructor.name.toLowerCase();
     this.types = types;
     this.entityCache = [];
     this.cacheDirty = true;
+    this.tickRate = tickRate;
+    this.accum = 0;
   }
 
   /**
@@ -35,13 +37,19 @@ class System {
    * @private
    * @param {Array} entities Entites to run the system on.
    */
-  run(entities){
+  run(entities, dt){
     if(this.cacheDirty) {
       this.entityCache = entities.filter(e => this._entityShouldBeUpdated(e));
       this.cacheDirty = false;
     }
 
-    this.update(this.entityCache);
+    this.accum += dt;
+
+    while(this.accum >= this.tickRate) {
+      console.log(this.name);
+      this.update(this.entityCache);
+      this.accum -= this.tickRate;
+    }
   }
 
   /**
