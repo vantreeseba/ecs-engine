@@ -21,7 +21,7 @@
   },
   "scripts": {
     "watch": "npm-watch test",
-    "test": "mocha --recursive -u exports --reporter=min",
+    "test": "mocha --recursive -u exports",
     "precommit": "npm run test"
   },
   "author": "",
