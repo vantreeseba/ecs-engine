@@ -5,4 +5,5 @@ module.exports = {
   ENTITY_SYNC:4,
   PING: 5,
   PONG: 6,
+  PLAYER_INPUT_ACK: 7,
 };

@@ -9,7 +9,7 @@ class Physics extends System {
   /**
    * constructor
    */
-  constructor({tickRate} = {tickRate:20}) {
+  constructor({tickRate} = {tickRate:30}) {
     super(['position', 'physics'], tickRate);
   }
 
@@ -28,7 +28,6 @@ class Physics extends System {
       Vector.limit2(pys.vel, pys.maxSpeed * this.dt);
       Vector.add2(pos, pys.vel);
       Vector.scale2(pys.acc, 0);
-      // Vector.scale2(pys.vel, 0.99999);
     }
   }
 }
