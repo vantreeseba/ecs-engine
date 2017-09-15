@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-var CircularBuffer = require('../../../shared/utils/CircularBuffer');
+var CircularBuffer = require('../../src/utils/CircularBuffer');
 
 let buffer;
 

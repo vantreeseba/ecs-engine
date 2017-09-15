@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-var Vector = require('../../shared/Vector');
+var Vector = require('../src/utils/Vector');
 
 let vector;
 

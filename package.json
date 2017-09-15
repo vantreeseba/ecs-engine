@@ -2,22 +2,13 @@
   "name": "realtime-multiplayer-engine",
   "version": "1.0.0",
   "description": "",
-  "main": "client.js",
+  "main": "",
   "devDependencies": {
-    "browser-sync": "^2.18.13",
-    "browser-sync-webpack-plugin": "^1.2.0",
     "chai": "^4.1.0",
-    "express": "^4.15.4",
-    "http-proxy-middleware": "^0.17.4",
+    "husky": "^0.14.3",
     "mocha": "^3.4.2",
-    "npm-run-all": "^4.1.1",
     "npm-watch": "^0.2.0",
-    "primus": "^7.1.0",
-    "primus-emit": "^1.0.0",
-    "primus-msgpack": "^1.0.2",
-    "sinon": "^2.3.8",
-    "uws": "^8.14.1",
-    "webpack": "^3.5.5"
+    "sinon": "^2.3.8"
   },
   "watch": {
     "test": {
@@ -31,9 +22,7 @@
   "scripts": {
     "watch": "npm-watch test",
     "test": "mocha --recursive -u exports --reporter=min",
-    "dev" : "run-p dev:*",
-    "dev:server": "node server",
-    "dev:build": "webpack"
+    "precommit": "npm run test"
   },
   "author": "",
   "license": "ISC"

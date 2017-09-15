@@ -1,20 +1,19 @@
 var assert = require('chai').assert;
-var Utils = require('../../../shared/utils');
+var Utils = require('../../src/utils');
 
 const test = {
   Utils: {
     calculateRollingAverage: {
       'should return the next value in the buffer' : () => {
         // const prev = 5;
-        let avg = 5;
+        let avg = 1;
 
         let nums = [];
-        for(var i = 0; i < 5; i++) {
-          let cur = Math.random() * 5;
-          nums.push(cur);
-          avg = Utils.calculateRollingAverage(avg, cur, 10);
+        for(var i = 0; i < 50; i++) {
+          avg = Utils.calculateRollingAverage(avg, 0, 10);
         }
-        console.log(nums, avg);
+
+        assert.isTrue(avg < 0.01);
       },
     },
   }

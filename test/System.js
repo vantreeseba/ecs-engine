@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-var System = require('../../shared/systems/System');
+var System = require('../src/systems/System');
 
 let system;
 
