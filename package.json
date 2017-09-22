@@ -1,8 +1,9 @@
 {
-  "name": "realtime-multiplayer-engine",
+  "name": "ECSEngine",
   "version": "1.0.0",
   "description": "",
-  "main": "",
+  "main": "dist/index.js",
+  "files": "dist",
   "devDependencies": {
     "chai": "^4.1.0",
     "husky": "^0.14.3",
@@ -13,7 +14,6 @@
   "watch": {
     "test": {
       "patterns": [
-        "src",
         "test"
       ],
       "extensions": "js"

@@ -1,5 +1,5 @@
 const System = require('./System');
-const Vector = require('../Vector');
+const Vector = require('../utils/Vector');
 
 /**
  * Phsyics system in ECS.

@@ -1,4 +1,4 @@
-const Component = require('../../shared/components/Component');
+const Component = require('./Component');
 
 /**
  * @extends {Component}

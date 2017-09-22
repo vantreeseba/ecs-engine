@@ -1,5 +1,5 @@
 const Component = require('./Component');
-const Vector = require('../Vector');
+const Vector = require('../utils/Vector');
 
 /**
  * A component representing a position.

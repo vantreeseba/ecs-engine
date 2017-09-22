@@ -1,3 +1,4 @@
+/** @namespace Components **/
 module.exports = {
   health: require('./Health'),
   position: require('./Position'),

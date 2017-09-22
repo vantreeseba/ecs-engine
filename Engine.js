@@ -1,6 +1,7 @@
-const Utils = require('../shared/utils');
+const Utils = require('./utils');
 
 /**
+ * @module ecs
  * @type {Engine}
  */
 class Engine {

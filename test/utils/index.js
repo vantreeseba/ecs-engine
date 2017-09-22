@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-var Utils = require('../../src/utils');
+var Utils = require('../../utils');
 
 const test = {
   Utils: {
