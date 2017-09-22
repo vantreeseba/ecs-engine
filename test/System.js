@@ -30,7 +30,7 @@ const test = {
           {c1:{}, c2:{}},
           {c1:{}},
         ];
-        system.run(entities);
+        system.run(entities, 1000);
         assert.equal(system.entityCache.length, 1);
       },
       'should set the entity cache dirty to false' : () => {
@@ -38,10 +38,15 @@ const test = {
           {c1:{}, c2:{}},
           {c1:{}},
         ];
-        system.run(entities);
+        system.run(entities, 1000);
         assert.isFalse(system.cacheDirty);
       }
-    }
+    },
+    'update': {
+      'should throw': () => {
+        // TODO: implement test for this.
+      },
+    },
   }
 };
 

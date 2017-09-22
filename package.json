@@ -9,6 +9,7 @@
     "husky": "^0.14.3",
     "mocha": "^3.4.2",
     "npm-watch": "^0.2.0",
+    "nyc": "^11.2.1",
     "sinon": "^2.3.8"
   },
   "watch": {
@@ -16,12 +17,13 @@
       "patterns": [
         "test"
       ],
-      "extensions": "js"
+      "extensions": "js",
+      "quiet": true
     }
   },
   "scripts": {
     "watch": "npm-watch test",
-    "test": "mocha --recursive -u exports",
+    "test": "nyc --all mocha",
     "precommit": "npm run test"
   },
   "author": "",

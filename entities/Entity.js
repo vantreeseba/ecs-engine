@@ -7,7 +7,6 @@ class Entity {
   constructor() {
     // TODO: Make ids better.
     this.id = Date.now();
-    // this.components = {};
   }
 
   /**
