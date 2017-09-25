@@ -15,7 +15,10 @@ class Engine {
     this.dt = 0;
     this.prevTime = Date.now();
 
-    this.fps = 0;
+    this.debugStats = {
+      fps: 0,
+      systems: {},
+    };
   }
 
   addEntity(entity) {
@@ -55,9 +58,21 @@ class Engine {
   update() {
     this.dt = Date.now() - this.prevTime;
     this.prevTime = Date.now();
-    this.fps = Utils.calculateRollingAverage(this.fps, 1000/this.dt, 10);
+    this.debugStats.fps = Utils.calculateRollingAverage(this.debugStats.fps, 1000/this.dt, 10);
 
-    this.systems.forEach(s => s.run(this.entities, this.dt));
+    this.systems.forEach(s => {
+      const time = performance.now();
+      s.run(this.entities, this.dt);
+      if(!this.debugStats.systems[s.name]) {
+        this.debugStats.systems[s.name] = {
+          time: 0,
+        };
+      }
+      let sdt = performance.now() - time;
+      this.debugStats.systems[s.name].time =
+        Utils.calculateRollingAverage(this.debugStats.systems[s.name].time, sdt, 10);
+      this.debugStats.systems[s.name].entityCount = s.entityCache.length;
+    });
 
     this.checkSnapshot();
   }
