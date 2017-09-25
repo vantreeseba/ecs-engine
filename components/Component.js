@@ -12,7 +12,7 @@ class Component {
 
     if(typeof params === 'object') {
       Object.assign(this, params);
-    } else if(params) {
+    } else if(params !== undefined) {
       this.value = params;
     }
   }

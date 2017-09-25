@@ -7,7 +7,7 @@ class System {
    * constructor
    * @param {Array} type The component type this system acts on.
    */
-  constructor(types, tickRate = 60) {
+  constructor(types, tickRate = 60, maxCatchUpAttempts = 10) {
     this.name = this.constructor.name.toLowerCase();
     this.types = types;
     this.entityCache = [];
@@ -17,6 +17,8 @@ class System {
     // https://gafferongames.com/post/fix_your_timestep/
     this.dt = 1000 / tickRate;
     this.accum = 0;
+    this.maxCatchUpAttempts = maxCatchUpAttempts;
+    this.catchupAttempts = 0;
   }
 
   /**
@@ -51,6 +53,12 @@ class System {
     while(this.accum >= this.dt) {
       this.update(this.entityCache);
       this.accum -= this.dt;
+
+      this.catchupAttempts += 1;
+      if(this.catchupAttempts >= this.maxCatchUpAttempts) {
+        this.catchupAttempts = 0;
+        break;
+      }
     }
   }
 
