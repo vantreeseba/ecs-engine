@@ -15,7 +15,8 @@
   "watch": {
     "test": {
       "patterns": [
-        "test"
+        "test",
+        "."
       ],
       "extensions": "js",
       "quiet": true

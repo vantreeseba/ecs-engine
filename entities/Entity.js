@@ -6,7 +6,7 @@ class Entity {
    */
   constructor() {
     // TODO: Make ids better.
-    this.id = Date.now();
+    this.id = Date.now() + Math.round(Math.random() * 1000);
   }
 
   /**

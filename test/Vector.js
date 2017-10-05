@@ -10,6 +10,7 @@ const test = {
     },
     'constructor': {
       'should construct a vector': () => {
+        vector = new Vector();
         assert.isOk(vector);
       },
     },

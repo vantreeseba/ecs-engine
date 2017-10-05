@@ -1,2 +1,3 @@
 --recursive
 -u exports
+--reporter=min
