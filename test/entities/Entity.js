@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-var Entity = require('../entities/Entity');
+var Entity = require('../../entities/Entity');
 
 let entity;
 

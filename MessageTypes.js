@@ -1,9 +1,0 @@
-module.exports = {
-  PLAYER_CONNECT:1,
-  PLAYER_DISCONNECT:2,
-  PLAYER_INPUT_SYNC:3,
-  ENTITY_SYNC:4,
-  PING: 5,
-  PONG: 6,
-  PLAYER_INPUT_ACK: 7,
-};

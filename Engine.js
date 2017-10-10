@@ -1,4 +1,7 @@
 const Utils = require('./utils');
+const EventManager = require('./EventManager');
+const EntityManager = require('./EntityMananger');
+const SystemManager = require('./SystemManager');
 
 /**
  * @module ecs
@@ -9,9 +12,11 @@ class Engine {
    * @param {Array} systems
    */
   constructor(){
+    this.events = new EventManager(this);
+    this.entities = new EntityManager(this);
+    this.systems = new SystemManager(this);
+
     this.getTime = Date.now;
-    this.systems = [];
-    this.entities = [];
     this.dt = 0;
     this.prevTime = this.getTime();
 
@@ -22,15 +27,6 @@ class Engine {
   }
 
   /**
-   * Add an entity to the engine.
-   * @param {Entity} entity Entity to add to the engine.
-   */
-  addEntity(entity) {
-    this.entities.push(entity);
-    this.systems.forEach(s => s.cacheDirty = true);
-  }
-
-  /**
    * Run the systems registered in the engines on the entities.
    */
   update() {
@@ -38,7 +34,7 @@ class Engine {
     this.prevTime = this.getTime();
     this.debugStats.fps = Utils.calculateRollingAverage(this.debugStats.fps, 1000/this.dt, 10);
 
-    this.systems.forEach((s) => this.runSystemWithLogging(s));
+    this.systems.systems.forEach((s) => this.runSystemWithLogging(s));
   }
 
   /**

@@ -13,18 +13,6 @@ const test = {
         assert.isOk(engine);
       },
     },
-    'addEntity': {
-      'should add an entity to the engine': () => {
-        engine.addEntity({});
-        assert.equal(engine.entities.length, 1);
-      },
-      'should set all systems cache to dirty' : () => {
-        let fakeSystem = {cacheDirty: false};
-        engine.systems.push(fakeSystem);
-        engine.addEntity({});
-        assert.equal(fakeSystem.cacheDirty, true);
-      }
-    },
     'update' :{
       'should update deltatime': () => {
         let dt = engine.dt;
