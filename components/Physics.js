@@ -24,6 +24,10 @@ class Physics extends Component {
     if(!params || !params.maxSpeed) {
       this.maxSpeed = 0.1;
     }
+
+    if(!params || !params.aabb) {
+      this.aabb = {x1: 0, x2: 32, y1: 0, y2: 32};
+    }
   }
 }
 

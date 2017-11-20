@@ -40,11 +40,11 @@ class System {
   /**
    * Run the system on the entities matching the type of this system.
    * @private
-   * @param {Array} entities Entites to run the system on.
+   * @param {Map} entities Entites to run the system on.
    */
   run(entities, dt){
     if(this.cacheDirty) {
-      this.entityCache = entities.filter(e => this._entityShouldBeUpdated(e));
+      this.entityCache = Array.from(entities.values()).filter(e => this._entityShouldBeUpdated(e));
       this.cacheDirty = false;
     }
 
@@ -59,6 +59,10 @@ class System {
         this.catchupAttempts = 0;
         break;
       }
+    }
+
+    if(this.accum <= this.dt) {
+      this.catchupAttempts = 0;
     }
   }
 

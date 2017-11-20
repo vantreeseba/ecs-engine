@@ -21,7 +21,9 @@ class Engine {
     this.prevTime = this.getTime();
 
     this.debugStats = {
-      fps: 0,
+      fps5: 0,
+      fps10: 0,
+      fps30: 0,
       systems: {},
     };
   }
@@ -32,7 +34,9 @@ class Engine {
   update() {
     this.dt = this.getTime() - this.prevTime;
     this.prevTime = this.getTime();
-    this.debugStats.fps = Utils.calculateRollingAverage(this.debugStats.fps, 1000/this.dt, 10);
+    this.debugStats.fps5 = Utils.calculateRollingAverage(this.debugStats.fps5, 1000/this.dt, 5);
+    this.debugStats.fps10 = Utils.calculateRollingAverage(this.debugStats.fps10, 1000/this.dt, 10);
+    this.debugStats.fps30 = Utils.calculateRollingAverage(this.debugStats.fps30, 1000/this.dt, 30);
 
     this.systems.systems.forEach((s) => this.runSystemWithLogging(s));
   }
@@ -45,17 +49,25 @@ class Engine {
   runSystemWithLogging(system) {
     const time = this.getTime();
 
-    system.run(this.entities, this.dt);
+    system.run(this.entities.entities, this.dt);
 
     if(!this.debugStats.systems[system.name]) {
       this.debugStats.systems[system.name] = {
         time: 0,
+        dt: 0,
+        catchupAttempts: 0,
+        entityCount: 0,
       };
     }
+
+    let stats = this.debugStats.systems[system.name];
     let sdt = this.getTime() - time;
-    this.debugStats.systems[system.name].time =
-        Utils.calculateRollingAverage(this.debugStats.systems[system.name].time, sdt, 10);
-    this.debugStats.systems[system.name].entityCount = system.entityCache.length;
+    let cua = system.catchupAttempts;
+
+    stats.time = Utils.calculateRollingAverage(stats.time, sdt, 10);
+    stats.entityCount = system.entityCache.length;
+    stats.catchupAttempts = Utils.calculateRollingAverage(stats.catchupAttempts, cua, 10);
+    stats.tickRate = Math.round(1000 / system.dt);
 
   }
 }
